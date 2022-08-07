@@ -1,34 +1,46 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { useDrop } from 'react-dnd';
 import { PlayerCard } from './PlayerCard';
+// import { listStyle as style } from './style';
 
 const PLAYERS = [
     { id: 1, name: 'Care' },
     { id: 2, name: 'Banme' },
     { id: 3, name: 'Sb' },
     { id: 4, name: 'Tentussy' },
-]
+];
 
 export const Party = () => {
-    const [party, setParty] = useState([])
-    const [{ isOver }, dropRef] = useDrop({
-        accept: 'player',
-        drop: (item) => setParty((party) =>
-                            !party.includes(item) ? [...party, item] : party),
-        collect: (monitor) => ({
-            isOver: monitor.isOver()
-        })
-    })
 
-    return (
-        <React.Fragment>
-            <div className='players'>
-                {PLAYERS.map(player => <PlayerCard draggable id={player.id} name={player.name} />)}
-            </div>
-            <div className='party' ref={dropRef}>
-                {party.map(player => <PlayerCard id={player.id} name={player.name} />)}
-                {isOver && <div>Add to Party</div>}
-            </div>
-        </React.Fragment>
-    )
-}
+    const [players, setPlayers] = useState(PLAYERS);
+
+    const movePlayerListItem = useCallback(
+        (dragIndex, hoverIndex) => {
+            const dragItem = players[dragIndex];
+            const hoverItem = players[hoverIndex];
+            // swap dragItem and hoverItem in players array
+            setPlayers(players => {
+                const updatedPlayers = [...players];
+                updatedPlayers[dragIndex] = hoverItem;
+                updatedPlayers[hoverIndex] = dragItem;
+                return updatedPlayers;
+            });
+        },
+        [players],
+    );
+
+    // nyi
+    // style={style}
+    return(
+        <div>
+            {players.map((player, index) => {
+                <PlayerCard
+                    key={player.id}
+                    index={index}
+                    text={player.name}
+                    moveListItem={movePlayerListItem}
+                />
+            })}
+        </div>
+    );
+};
