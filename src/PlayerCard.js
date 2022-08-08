@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd'
-// import { listItemStyle as style } from './style';
+import './style.css';
 
 export const PlayerCard = ({ text, index, moveListItem }) => {
 
@@ -41,7 +41,7 @@ export const PlayerCard = ({ text, index, moveListItem }) => {
     //  style={{ ...style, opacity }}
     // need to put something together for style
     return (
-        <div ref={dragDropRef} style={{ opacity }}>
+        <div ref={dragDropRef} className="player">
             {text}
         </div>
     )

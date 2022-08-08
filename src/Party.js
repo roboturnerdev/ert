@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useDrop } from 'react-dnd';
 import { PlayerCard } from './PlayerCard';
-// import { listStyle as style } from './style';
+import './style.css';
 
 const PLAYERS = [
     { id: 1, name: 'Care' },
@@ -29,10 +29,11 @@ export const Party = () => {
         [players],
     );
 
-    // nyi
-    // style={style}
+    console.log('Players: ');
+    console.log(players);
+
     return(
-        <div>
+        <div className="box">\
             {players.map((player, index) => {
                 <PlayerCard
                     key={player.id}
