@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { Party } from './Party';
+import Bishop from './Bishop';
+import Square from './Square';
 
 const CLIENT_ID = `${process.env.REACT_APP_WCL_CLIENT_ID}`;
 const CLIENT_SECRET = `${process.env.REACT_APP_CLIENT_SECRET}`;
@@ -55,9 +54,9 @@ function App() {
   });
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <Party />
-    </DndProvider>
+    <div>
+      Query Ran
+    </div>
   );
 }
 
