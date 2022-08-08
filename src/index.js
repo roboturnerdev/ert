@@ -3,13 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import Board from './Board';
-import reportWebVitals from './reportWebVitals';
 
-
-const root =
-  ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <Board bishopPos={[0,0]} />
-  </React.StrictMode>
+  <Board bishopPos={[1,1]} />
 );
+
+// right now it only draws the square
+// we specify in the position not the rest
